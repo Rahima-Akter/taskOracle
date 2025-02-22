@@ -35,7 +35,7 @@ const Todo = () => {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const deleted = tasks.filter(deleted => deleted._id !== id)
+                    const deleted = todos.filter(deleted => deleted._id !== id)
                     setTodos(deleted)
                     const { data } = await axios.delete(`${import.meta.env.VITE_LOCAL_HOST}/delete-single-task/${id}`)
                     if (data.insertedId) {
@@ -44,7 +44,7 @@ const Todo = () => {
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
-                        // refetch();
+                        refetch();
                     }
                 }
             });
@@ -67,10 +67,10 @@ const Todo = () => {
 
     return (
         <>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl overflow-x-hidden'>
 
                 {
-                    todos.length === 0 ? <div className='col-span-4 mt-2'>
+                    todos.length === 0 ? <div className='col-span-5 mt-2'>
                         <img src="https://media.tenor.com/PKVtuCZ-gXcAAAAM/inanimate-insanity-ii.gif" className='w-[92%] h-[85%] rounded-lg mx-auto' alt="" />
                     </div> : (
                         todos.map(todo => <TodoCard key={todo._id} todo={todo} handleModal={handleModal} handleDelete={handleDelete} handleInProgress={handleInProgress} />)
@@ -80,7 +80,6 @@ const Todo = () => {
             </div>
 
             {/*  modal */}
-
             <dialog id="my_modal_5" className="modal modal-middle backdrop-blur-lg">
                 <div className="modal-box relative">
                     <div className='text-black text-center bg-[#eaeadd] w-full h-full rounded-lg py-2 px-4 space-y-2'>

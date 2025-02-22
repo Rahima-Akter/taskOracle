@@ -67,7 +67,7 @@ const Progress = () => {
 
     return (
         <>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl overflow-x-hidden'>
 
                 {
                     progresses.length === 0 ? <div className='col-span-4 mt-2'>

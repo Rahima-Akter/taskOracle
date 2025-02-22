@@ -1,10 +1,8 @@
-import ProgressCard from '../CategoryCards/ProgressCard';
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { HashLoader } from 'react-spinners'
 import { IoIosCloseCircle } from "react-icons/io";
 import Swal from 'sweetalert2';
-import toast from 'react-hot-toast'
 import useTasks from '../../hooks/useTasks';
 import DoneCard from '../CategoryCards/DoneCard';
 
@@ -55,21 +53,11 @@ const Done = () => {
         }
     }
 
-    // const handleDone = async (id) => {
-    //     const { data } = await axios.patch(`${import.meta.env.VITE_LOCAL_HOST}/done/${id}`)
-    //     if (data.modifiedCount) {
-    //         toast.success('Task is done')
-    //         refetch()
-    //     } else {
-    //         toast.error('something went wrong! please try again')
-    //     }
-    // }
-
     if (isLoading) return <div className='flex justify-center items-center text-cyan-400 mt-44'><HashLoader size={70} color='#0fcfd5' /></div>
 
     return (
         <>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl overflow-x-hidden'>
 
                 {
                     doneTasks.length === 0 ? <div className='col-span-4 mt-2'>
