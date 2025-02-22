@@ -54,11 +54,35 @@ async function run() {
       res.send(result);
     });
 
+    // ** delete a single task
+    app.delete('/delete-single-task/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await tasksCollection.deleteOne(query);
+      res.status(200).send(result)
+    });
+
+    //  ** get task by id
+    app.get('/task-by-id/:id', async (req,res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await tasksCollection.findOne(query);
+      res.status(200).send(result)
+    })
+
     // ** update task by id
     app.patch('/task-by-id/:id', async (req, res) => {
       const id = req.params.id
       const query = { _id: new ObjectId(id) }
-      const result = await tasksCollection.find(query).toArray();
+      const data = req.body;
+      const updateDoc = {
+        $set: {
+          title: data.title,
+          description: data.description,
+          dueDate: data.dueDate
+        }
+      }
+      const result = await tasksCollection.updateOne(query, updateDoc);
       res.send(result);
     });
 

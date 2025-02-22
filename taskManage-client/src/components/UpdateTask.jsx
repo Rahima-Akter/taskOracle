@@ -1,31 +1,24 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { AuthContext } from "../providers/AuthProvider";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const UpdateTask = () => {
-    const { user } = useContext(AuthContext)
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [dueDate, setDueDate] = useState("");
-    console.log(user)
+    const data = useLoaderData();
+    const { id } = useParams();
+    const [title, setTitle] = useState(data.title || "");
+    const [description, setDescription] = useState(data.description || "");
+    const [dueDate, setDueDate] = useState(data.dueDate || "");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!title.trim()) {
-            toast.error("Title is required");
-            return;
-        }
-        const taskData = { title, description, dueDate, email: user?.email, category: 'todo', createdAt: new Date().toISOString() }
+        const taskData = { title, description, dueDate }
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/tasks`, taskData);
+            const response = await axios.patch(`${import.meta.env.VITE_LOCAL_HOST}/task-by-id/${id}`, taskData);
             console.log(response.data)
-            if (response.data.insertedId) {
-                toast.success('task added to the list')
-                setTitle("")
-                setDescription("")
-                setDueDate("")
+            if (response.data.modifiedCount) {
+                toast.success('task updated successfully')
             } else {
                 toast.error('something went wrong! please try again later')
             }
@@ -35,8 +28,8 @@ const UpdateTask = () => {
     };
 
     return (
-        <div className="w-full h-full bg-gray-200 rounded-[30px] shadow-2xl p-5 flex flex-col items-center">
-            <h2 className="text-2xl font-extrabold text-gray-600 drop-shadow-md">Add A Task</h2>
+        <div className="w-full h-full bg-[#e9dddd] rounded-[30px] shadow-2xl p-5 flex flex-col items-center">
+            <h2 className="text-2xl font-extrabold text-gray-600 drop-shadow-md">Update Task</h2>
             <form onSubmit={handleSubmit} className="w-full flex flex-col mt-4">
                 <div className="flex flex-row gap-5">
                     {/* Title Input */}
@@ -47,8 +40,7 @@ const UpdateTask = () => {
                             maxLength={50}
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            required
-                            className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
+                            className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold"
                         />
                     </div>
 
@@ -58,9 +50,8 @@ const UpdateTask = () => {
                         <input
                             type="date"
                             value={dueDate}
-                            required
                             onChange={(e) => setDueDate(e.target.value)}
-                            className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
+                            className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold"
                         />
                     </div>
                 </div>
@@ -72,16 +63,16 @@ const UpdateTask = () => {
                     value={description}
                     rows={4}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
+                    className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold"
                 ></textarea>
 
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full mt-5 py-3 bg-gray-200 text-gray-600 font-bold uppercase rounded-xl transition shadow-[rgba(0,0,0,0.35)_0px_3px_7px] hover:shadow-[inset_2px_2px_7px_rgba(0,0,0,0.5)]"
+                    className="w-full mt-5 py-3 bg-red-200 hover:bg-white text-gray-600 font-bold uppercase rounded-xl transition shadow-[rgba(0.9,0,0,0.35)_0px_3px_7px] hover:shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)]"
                 >
-                    + Add Task
+                    Update Task
                 </button>
             </form>
         </div>

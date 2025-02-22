@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
-const TodoCard = ({ todo, handleModal }) => {
+const TodoCard = ({ todo, handleModal, handleDelete }) => {
+    const navigate = useNavigate();
+    
 
     return (
         <div className="w-64 bg-[#eaeadd] rounded-3xl shadow-lg p-4 flex flex-col items-center">
@@ -18,10 +20,10 @@ const TodoCard = ({ todo, handleModal }) => {
                 <div onClick={() => handleModal(`${todo._id}`)} className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
                     <span className="text-lg text-gray-700">🔍</span>
                 </div>
-                <Link to="update"  className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
+                <div onClick={() => navigate(`/dashboard/update/${todo._id}`)} className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
                     <span className="text-lg text-gray-700 -mt-1">✍</span>
-                </Link>
-                <div className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
+                </div>
+                <div onClick={() => handleDelete(`${todo._id}`)} className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
                     <span className="text-lg text-gray-700">⛔</span>
                 </div>
                 <div className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">

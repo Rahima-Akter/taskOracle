@@ -2,13 +2,14 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { AuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddTaskForm = () => {
     const { user } = useContext(AuthContext)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [dueDate, setDueDate] = useState("");
-    console.log(user)
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +24,7 @@ const AddTaskForm = () => {
             console.log(response.data)
             if (response.data.insertedId) {
                 toast.success('task added to the list')
+                navigate('todo')
                 setTitle("")
                 setDescription("")
                 setDueDate("")

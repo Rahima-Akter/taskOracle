@@ -1,17 +1,18 @@
 import TodoCard from '../CategoryCards/TodoCard';
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HashLoader } from 'react-spinners'
 import { AuthContext } from '../../providers/AuthProvider'
 import { IoIosCloseCircle } from "react-icons/io";
-import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const Todo = () => {
+    const [todos, setTodos] = useState([])
     const [detail, setDetail] = useState('')
-    const navigate = useNavigate()
     const { user } = useContext(AuthContext)
-    const { data: tasks = [], isLoading } = useQuery({
+    const { data: tasks = [], isLoading, refetch } = useQuery({
         queryKey: ['tasks'],
         queryFn: async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/tasks/${user?.email}`)
@@ -19,12 +20,45 @@ const Todo = () => {
         }
     });
 
-    const todos = tasks.filter(todo => todo.category === 'todo')
+    useEffect(() => {
+        const filter = tasks.filter(todo => todo.category === 'todo')
+        setTodos(filter)
+    }, [tasks])
 
     const handleModal = (id) => {
         const singleDetail = tasks.find(detail => detail._id === id)
         setDetail(singleDetail)
         document.getElementById('my_modal_5').showModal()
+    }
+
+    const handleDelete = async (id) => {
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const deleted = tasks.filter(deleted => deleted._id !== id)
+                    setTodos(deleted)
+                    const { data } = await axios.delete(`${import.meta.env.VITE_LOCAL_HOST}/delete-single-task/${id}`)
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        // refetch();
+                    }
+                }
+            });
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     if (isLoading) return <div className='flex justify-center items-center text-cyan-400 mt-44'><HashLoader size={70} color='#0fcfd5' /></div>
@@ -35,7 +69,7 @@ const Todo = () => {
 
                 {
                     todos.length === 0 ? <p>no item to show</p> : (
-                        todos.map(todo => <TodoCard key={todo._id} todo={todo} handleModal={handleModal} />)
+                        todos.map(todo => <TodoCard key={todo._id} todo={todo} handleModal={handleModal} handleDelete={handleDelete} />)
                     )
                 }
 
