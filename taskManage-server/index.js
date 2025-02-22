@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const { MongoClient, ServerApiVersion } = require('mongodb')
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const morgan = require('morgan')
 
 const port = process.env.PORT || 9000
@@ -39,24 +39,36 @@ async function run() {
     const usersCollection = db.collection("users");
     const tasksCollection = db.collection("tasks");
 
-    
+    // ** post task
     app.post('/tasks', async (req, res) => {
       const task = req.body;
       const result = await tasksCollection.insertOne(task);
       res.send(result);
     });
-    app.get('/tasks', async (req, res) => {
-      const result = await tasksCollection.find().toArray();
+
+    // ** get task by email
+    app.get('/tasks/:email', async (req, res) => {
+      const email = req.params.email
+      const query = { email }
+      const result = await tasksCollection.find(query).toArray();
       res.send(result);
     });
 
-    app.post('/users/:email', async(req,res) => {
+    // ** update task by id
+    app.patch('/task-by-id/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const result = await tasksCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    app.post('/users/:email', async (req, res) => {
       const email = req.params.email;
       const query = { email };
       const user = req.body;
       const isExist = await usersCollection.findOne(query);
-      if(isExist) return res.status(400).send({ message: 'user already exists'});
-      const result = await usersCollection.insertOne({...user, createdAt: new Date()})
+      if (isExist) return res.status(400).send({ message: 'user already exists' });
+      const result = await usersCollection.insertOne({ ...user, createdAt: new Date() })
       res.status(200).send(result)
     })
 

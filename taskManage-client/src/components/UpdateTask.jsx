@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { AuthContext } from "../providers/AuthProvider";
 
-const AddTaskForm = () => {
+const UpdateTask = () => {
     const { user } = useContext(AuthContext)
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -88,4 +88,4 @@ const AddTaskForm = () => {
     );
 };
 
-export default AddTaskForm;
+export default UpdateTask;

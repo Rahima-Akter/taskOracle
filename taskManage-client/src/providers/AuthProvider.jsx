@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser?.email) {
         setUser(currentUser)
-        setLoading(true)
+        // setLoading(true)
       } else {
         setUser(null)
       }

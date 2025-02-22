@@ -5,6 +5,8 @@ import Todo from '../components/Category/Todo'
 import Done from '../components/Category/Done'
 import Progress from '../components/Category/Progress'
 import Home from '../components/Home'
+import PrivateRoute from '../routes/PrivateRoute'
+import UpdateTask from '../components/UpdateTask'
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +15,9 @@ export const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <DashboardLayout />,
+    element: <PrivateRoute>
+      <DashboardLayout />
+    </PrivateRoute>,
     children: [
       {
         index: true,
@@ -30,6 +34,11 @@ export const router = createBrowserRouter([
       {
         path: 'done',
         element: <Done />
+      },
+      {
+        path: 'update/:id',
+        element: <UpdateTask/>,
+        loader: ({params})=> fetch(`http://localhost:9000/task-by-id/${params.id}`)
       },
     ],
   },
