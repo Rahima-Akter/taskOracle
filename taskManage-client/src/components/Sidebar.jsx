@@ -12,7 +12,7 @@ const Sidebar = () => {
             <Link to="/">
                 <h1 className="text-xl font-bold text-gray-800">TaskOracle</h1>
             </Link>
-            <p className="text-xs text-gray-500">Your Tasks</p>
+            <p className="text-[10px] text-gray-500">Your Task BUDDY</p>
 
             {/* Tabs */}
             <div className="flex justify-between w-full mt-2">

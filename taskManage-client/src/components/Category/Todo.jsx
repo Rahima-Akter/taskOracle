@@ -1,24 +1,16 @@
 import TodoCard from '../CategoryCards/TodoCard';
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HashLoader } from 'react-spinners'
-import { AuthContext } from '../../providers/AuthProvider'
 import { IoIosCloseCircle } from "react-icons/io";
 import Swal from 'sweetalert2';
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
+import useTasks from '../../hooks/useTasks';
 
 const Todo = () => {
     const [todos, setTodos] = useState([])
     const [detail, setDetail] = useState('')
-    const { user } = useContext(AuthContext)
-    const { data: tasks = [], isLoading, refetch } = useQuery({
-        queryKey: ['tasks'],
-        queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/tasks/${user?.email}`)
-            return data;
-        }
-    });
+    const [tasks, isLoading, refetch] = useTasks();
 
     useEffect(() => {
         const filter = tasks.filter(todo => todo.category === 'todo')
@@ -61,6 +53,16 @@ const Todo = () => {
         }
     }
 
+    const handleInProgress = async (id) => {
+        const { data } = await axios.patch(`${import.meta.env.VITE_LOCAL_HOST}/in-progress/${id}`)
+        if (data.modifiedCount) {
+            toast.success('Task is in progress')
+            refetch()
+        } else {
+            toast.error('something went wrong! please try again')
+        }
+    }
+
     if (isLoading) return <div className='flex justify-center items-center text-cyan-400 mt-44'><HashLoader size={70} color='#0fcfd5' /></div>
 
     return (
@@ -68,8 +70,10 @@ const Todo = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:max-h-[390px] overflow-y-auto rounded-3xl'>
 
                 {
-                    todos.length === 0 ? <p>no item to show</p> : (
-                        todos.map(todo => <TodoCard key={todo._id} todo={todo} handleModal={handleModal} handleDelete={handleDelete} />)
+                    todos.length === 0 ? <div className='col-span-4 mt-2'>
+                        <img src="https://media.tenor.com/PKVtuCZ-gXcAAAAM/inanimate-insanity-ii.gif" className='w-[92%] h-[85%] rounded-lg mx-auto' alt="" />
+                    </div> : (
+                        todos.map(todo => <TodoCard key={todo._id} todo={todo} handleModal={handleModal} handleDelete={handleDelete} handleInProgress={handleInProgress} />)
                     )
                 }
 

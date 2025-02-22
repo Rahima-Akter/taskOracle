@@ -57,15 +57,15 @@ async function run() {
     // ** delete a single task
     app.delete('/delete-single-task/:id', async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)};
+      const query = { _id: new ObjectId(id) };
       const result = await tasksCollection.deleteOne(query);
       res.status(200).send(result)
     });
 
     //  ** get task by id
-    app.get('/task-by-id/:id', async (req,res) => {
+    app.get('/task-by-id/:id', async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)}
+      const query = { _id: new ObjectId(id) }
       const result = await tasksCollection.findOne(query);
       res.status(200).send(result)
     })
@@ -80,6 +80,31 @@ async function run() {
           title: data.title,
           description: data.description,
           dueDate: data.dueDate
+        }
+      }
+      const result = await tasksCollection.updateOne(query, updateDoc);
+      res.send(result);
+    });
+
+    // ** change category to in-progress
+    app.patch('/in-progress/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const updateDoc = {
+        $set: {
+          category: 'in-progress',
+        }
+      }
+      const result = await tasksCollection.updateOne(query, updateDoc);
+      res.send(result);
+    });
+    // ** change category to done
+    app.patch('/done/:id', async (req, res) => {
+      const id = req.params.id
+      const query = { _id: new ObjectId(id) }
+      const updateDoc = {
+        $set: {
+          category: 'done',
         }
       }
       const result = await tasksCollection.updateOne(query, updateDoc);

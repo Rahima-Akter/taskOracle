@@ -3,7 +3,7 @@
 import { useNavigate } from "react-router-dom";
 
 
-const TodoCard = ({ todo, handleModal, handleDelete }) => {
+const TodoCard = ({ todo, handleModal, handleDelete, handleInProgress }) => {
     const navigate = useNavigate();
     
 
@@ -35,13 +35,14 @@ const TodoCard = ({ todo, handleModal, handleDelete }) => {
             {/* Task List */}
             <div className="w-full bg-white rounded-xl shadow-[rgba(0,0,0,0.35)_0px_5px_15px] p-3 mt-4">
                 <h2 className="text-md font-bold text-black">{todo.title}</h2>
-                <ul className="mt-2 text-gray-600 text-xs">
+                <ul className="mt-1 text-gray-600 text-xs">
                     <p>{todo.description.slice(0, 60)}.........</p>
                 </ul>
+                <h2 className="text-sm font-bold text-black mt-2">Due Date: <span>{todo?.dueDate}</span></h2>
             </div>
 
             {/* Add Task Button */}
-            <button className="w-full font-bold mt-4 py-2 bg-white text-gray-950 rounded-lg shadow-[rgba(0,0,0,0.35)_0px_5px_15px] hover:shadow-[inset_0px_1px_5px_rgba(0,0,0,0.5)] duration-500"
+            <button onClick={() => {handleInProgress(`${todo._id}`); navigate('/dashboard/progress');}} className="w-full font-bold mt-4 py-2 bg-white text-gray-950 rounded-lg shadow-[rgba(0,0,0,0.35)_0px_5px_15px] hover:shadow-[inset_0px_1px_5px_rgba(0,0,0,0.5)] duration-500"
             >Start Task</button>
         </div>
     );

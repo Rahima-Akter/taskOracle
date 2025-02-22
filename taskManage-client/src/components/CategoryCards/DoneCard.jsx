@@ -1,8 +1,11 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 
-const DoneCard = () => {
+import { useNavigate } from "react-router-dom";
+
+const DoneCard = ({done, handleModal, handleDelete}) => {
+    const navigate = useNavigate()
     return (
-        <div className="w-60 bg-[#a0bebb] rounded-3xl shadow-lg p-4 flex flex-col items-center hover:scale-95 duration-1000">
+        <div className="w-60 bg-[#a0bebb] rounded-3xl shadow-lg p-4 flex flex-col items-center">
 
             {/* Task Name Placeholder */}
             <div className="w-full bg-[#6a8f8b] rounded-full py-1 shadow-[rgba(0,0,0,0.20)_0px_5px_15px] mt-4">
@@ -11,10 +14,10 @@ const DoneCard = () => {
 
             {/* Task Details */}
             <div className="w-full flex justify-center items-center mt-6">
-                <div className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
+                <div onClick={()=> handleModal(`${done._id}`)} className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
                     <span className="text-lg text-gray-700">🔍</span>
                 </div>
-                <div className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
+                <div onClick={()=> handleDelete (`${done._id}`)} className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
                     <span className="text-lg text-gray-700">⛔</span>
                 </div>
                 <div className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center mr-3 border-2 border-gray-300 hover:cursor-pointer hover:bg-gray-100">
@@ -25,16 +28,15 @@ const DoneCard = () => {
 
             {/* Task List */}
             <div className="w-full bg-white rounded-xl shadow-[rgba(0,0,0,0.35)_0px_5px_15px] p-3 mt-4">
-                <h2 className="text-md font-bold text-black">Done</h2>
-                <ul className="mt-2 text-gray-600">
-                    <li className="border-b py-1">_____</li>
-                    <li className="border-b py-1">_____</li>
-                    <li className="border-b py-1">_____</li>
+                <h2 className="text-md font-bold text-black">{done?.title}</h2>
+                <ul className="mt-1 text-gray-600 text-xs">
+                    <p>{done?.description.slice(0, 60)}.........</p>
                 </ul>
+                <h2 className="text-sm font-bold text-black mt-2">Due Date: <span>{done?.dueDate}</span></h2>
             </div>
 
             {/* Add Task Button */}
-            <button className="w-full font-bold mt-4 py-2 bg-[#6a8f8b] text-white rounded-lg shadow-[rgba(5,0,5px,0.25)_0px_5px_1px] hover:shadow-[inset_0px_0px_5px_rgba(0,0,0,0.5)] hover:shadow-white duration-500"
+            <button onClick={()=> navigate('/dashboard')} className="w-full font-bold mt-4 py-2 bg-[#6a8f8b] text-white rounded-lg shadow-[rgba(5,0,5px,0.25)_0px_5px_1px] hover:shadow-[inset_0px_0px_5px_rgba(0,0,0,0.5)] hover:shadow-white duration-500"
             >+ Add a New Task</button>
         </div>
     );
