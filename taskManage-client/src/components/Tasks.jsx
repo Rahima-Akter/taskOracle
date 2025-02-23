@@ -10,11 +10,7 @@ import useTasks from "../hooks/useTasks";
 import { FaEye } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
-import { VscDebugStart } from "react-icons/vsc";
-import { MdOutlineDoneOutline } from "react-icons/md";
 import { useDrag, useDrop } from "react-dnd"; // Import hooks for drag-and-drop
-import { DndProvider } from "react-dnd"; // DndProvider wrapper
-import { HTML5Backend } from "react-dnd-html5-backend"; // Backend for drag-and-drop
 
 const Tasks = () => {
     const navigate = useNavigate();
@@ -130,7 +126,7 @@ const Tasks = () => {
     };
 
     return (
-        <DndProvider backend={HTML5Backend}>
+        <div>
             <div
                 ref={drop}
                 className="min-h-[370px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 rounded-lg"
@@ -184,7 +180,7 @@ const Tasks = () => {
                     </form>
                 </div>
             </dialog>
-        </DndProvider>
+        </div>
     );
 };
 

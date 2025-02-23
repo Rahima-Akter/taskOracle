@@ -55,41 +55,41 @@ npm install
 ```bash
 npm install
 ```
-➡ Create a .env file in the root of the project to store sensitive information like the MongoDB connection string. 
+- ➡ Create a .env file in the root of the project to store sensitive information like the MongoDB connection string. 
 # Example:
-🟢 MONGODB_URI=mongodb://your-mongodb-uri
+- 🟢 MONGODB_URI=mongodb://your-mongodb-uri
 4. **Start the server:**:
-➡ To start the server in production mode, run:
+- ➡ To start the server in production mode, run:
 ```bash
 npm install
 ```
-➡ Create a .env file in the root of the project to store sensitive information like the MongoDB connection string. 
+- ➡ Create a .env file in the root of the project to store sensitive information like the MongoDB connection string. 
 ```bash
 npm start
 ```
-🟢 To start the server in development mode (with auto-reloading), run:
+- 🟢 To start the server in development mode (with auto-reloading), run:
 ```bash
 npm run dev
 ```
 5. **Access the server:**:
-🟢 Your server should now be running on http://localhost:9000 (or whichever port you have configured).
+- 🟢 Your server should now be running on http://localhost:9000 (or whichever port you have configured).
 
 ### 🌐 API Endpoints
 -**You can interact with the backend through the following API endpoints:**
 
-🟢 GET /tasks - Fetch all tasks.
-🟢 POST /tasks - Create a new task.
-🟢 PUT /tasks/:id - Update an existing task by ID.
-🟢 DELETE /tasks/:id - Delete a task by ID.
+- 🟢 GET /tasks - Fetch all tasks.
+- 🟢 POST /tasks - Create a new task.
+- 🟢 PUT /tasks/:id - Update an existing task by ID.
+- 🟢 DELETE /tasks/:id - Delete a task by ID.
 
 ### 🤝 Contributing
 - **Feel free to fork and contribute to this project! Here's how you can help:**
 
-🔱 Fork the repository.
-🔱 Create a new branch (git checkout -b feature-branch).
-🔱 Commit your changes (git commit -am 'Add new feature').
-🔱 Push to the branch (git push origin feature-branch).
-🔱 Create a new pull request.
+- 🔱 Fork the repository.
+- 🔱 Create a new branch (git checkout -b feature-branch).
+- 🔱 Commit your changes (git commit -am 'Add new feature').
+- 🔱 Push to the branch (git push origin feature-branch).
+- 🔱 Create a new pull request.
 
 
 ### 📬 Contact
