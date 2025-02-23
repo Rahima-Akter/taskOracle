@@ -1,8 +1,11 @@
 import { Tab, Tabs, TabList } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { Link } from 'react-router-dom';
+import ThemeToggleButton from '../context/themeContext/ThemeToggleButton';
+import { useTheme } from '../context/themeContext/ThemeProvider';
 
 const Sidebar = () => {
+    const { theme } = useTheme()
     return (
         <div className="w-48 bg-gray-200 rounded-3xl shadow-[inset_0px_0px_10px_rgba(0.5,0.5,0.5,0.5)]  border border-gray-200 p-4 flex flex-col items-center h-[95vh] fixed">
             {/* Profile Section */}
@@ -27,18 +30,22 @@ const Sidebar = () => {
                         className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
                         selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
                     >
-                        <Link>+ Add Task</Link>
+                        <Link to="create-task">+ Add Task</Link>
                     </Tab>
-
-
 
                     <Tab
                         className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
                         selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
                     >
-                        <Link to="todo">To-Do</Link>
+                        <Link to="">Tasks</Link>
                     </Tab>
 
+                    {/* <Tab
+                        className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
+                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
+                    >
+                        <Link to="todo">To-Do</Link>
+                    </Tab>
 
                     <Tab
                         className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
@@ -47,29 +54,23 @@ const Sidebar = () => {
                         <Link to="progress">In-Progress</Link>
                     </Tab>
 
-
                     <Tab
                         className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
                         selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
                     >
                         <Link to="done">Done</Link>
-                    </Tab>
+                    </Tab> */}
 
                 </TabList>
             </Tabs>
 
-            {/* buttons */}
-            {/* <div className='mt-5 space-y-2'>
-                <button className="w-full py-2 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800">+ Add Task</button>
-                <button className="w-full py-2 my-2 bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800">To-Do</button>
-                <button className="w-full py-2 my-2 bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800">In-Progress</button>
-                <button className="w-full py-2 my-2 bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800">Done</button>
-            </div> */}
             <div className='mt-auto'>
+                <div className='flex items-center gap-2 mb-3'>
+                    <ThemeToggleButton /><span>{theme === "light" ? "Dark Mod?" : "Light Mod?"}</span>
+                </div>
                 <button className="w-full py-2 px-12 bg-red-600 rounded-full shadow-lg border border-gray-200 text-white">Log Out</button>
-                <button className="w-full py-1 text-sm mt-1 px-10 bg-red-600 rounded-full shadow-lg border border-gray-200 text-white">Dark Mod</button>
             </div>
-
+            <small className='text-[10px] mt-2'>© SRity</small>
         </div >
     );
 };

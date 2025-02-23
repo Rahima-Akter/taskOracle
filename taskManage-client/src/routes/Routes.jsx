@@ -1,12 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 import DashboardLayout from '../layouts/DashboardLayout'
 import AddTaskForm from '../components/AddTaskForm'
-import Todo from '../components/Category/Todo'
-import Done from '../components/Category/Done'
-import Progress from '../components/Category/Progress'
 import Home from '../components/Home'
 import PrivateRoute from '../routes/PrivateRoute'
 import UpdateTask from '../components/UpdateTask'
+import Tasks from '../components/Tasks'
 
 export const router = createBrowserRouter([
   {
@@ -21,19 +19,12 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        
+        element: <Tasks />
+      },
+      {
+        path: 'create-task',
         element: <AddTaskForm />
-      },
-      {
-        path: 'todo',
-        element: <Todo />
-      },
-      {
-        path: 'progress',
-        element: <Progress />
-      },
-      {
-        path: 'done',
-        element: <Done />
       },
       {
         path: 'update/:id',

@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 
 const DashboardLayout = () => {
   return (
-    <div className="w-full min-h-screen bg-[#ccd0c8] p-6 flex flex-row">
+    <div className="w-full min-h-screen bg-[#ccd0c8] dark:bg-[#68777f] p-6 flex flex-row">
       <Sidebar />
       <div className="flex flex-col w-full pl-52 gap-5 mt-1">
         <div className="">
