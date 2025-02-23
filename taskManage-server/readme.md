@@ -57,7 +57,7 @@ npm install
 ```
 - ➡ Create a .env file in the root of the project to store sensitive information like the MongoDB connection string. 
 # Example:
-- 🟢 MONGODB_URI=mongodb://your-mongodb-uri
+-  MONGODB_URI=mongodb://your-mongodb-uri
 4. **Start the server:**:
 - ➡ To start the server in production mode, run:
 ```bash
@@ -67,12 +67,12 @@ npm install
 ```bash
 npm start
 ```
-- 🟢 To start the server in development mode (with auto-reloading), run:
+5. **To start the server in development mode (with auto-reloading), run:**:
 ```bash
 npm run dev
 ```
-5. **Access the server:**:
-- 🟢 Your server should now be running on http://localhost:9000 (or whichever port you have configured).
+6. **Access the server:**:
+- Your server should now be running on http://localhost:9000 (or whichever port you have configured).
 
 ### 🌐 API Endpoints
 -**You can interact with the backend through the following API endpoints:**
@@ -93,6 +93,6 @@ npm run dev
 
 
 ### 📬 Contact
-For any questions or suggestions, please contact me directly!
+- For any questions or suggestions, please contact me directly!
 
 ### 🚀 Happy Task Managing!

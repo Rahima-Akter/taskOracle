@@ -5,8 +5,13 @@ import Home from '../components/Home'
 import PrivateRoute from '../routes/PrivateRoute'
 import UpdateTask from '../components/UpdateTask'
 import Tasks from '../components/Tasks'
+import NotFoundPage from '../components/NotFoundPage'
 
 export const router = createBrowserRouter([
+  {
+    path: '*',
+    element: <NotFoundPage />
+  },
   {
     path: '/',
     element: <Home />,
@@ -19,7 +24,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        
+
         element: <Tasks />
       },
       {

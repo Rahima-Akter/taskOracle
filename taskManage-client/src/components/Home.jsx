@@ -81,7 +81,9 @@ const Home = () => {
                         Beacuse <em>Your Task Is My Command</em> 🥰
                     </p>
 
-                    <button onClick={() => navigate('dashboard')} className="font-bold text-cyan-600 text-lg bg-white rounded-full px-5 py-3 hover:bg-gradient-to-r hover:from-cyan-100 duration-1000 transition-colors w-44 text-center">Get Started?</button>
+                    {
+                        user ? <button onClick={() => navigate('dashboard')} className="font-bold text-cyan-600 text-lg bg-white rounded-full px-5 py-3 hover:bg-gradient-to-r hover:from-cyan-100 duration-1000 transition-colors w-44 text-center">Get Started?</button> : <button onClick={handleGoogleSignIn} className="font-bold text-cyan-600 text-lg bg-white rounded-full px-5 py-3 hover:bg-gradient-to-r hover:from-cyan-100 duration-1000 transition-colors w-44 text-center">Get Started?</button>
+                    }
 
                 </div>
             </div>

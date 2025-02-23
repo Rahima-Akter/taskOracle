@@ -48,7 +48,7 @@ Welcome to **TaskOracle Client**, the frontend of the **TaskOracle Server**, bui
 - Open your terminal and run the following command to clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/taskoracle-client.git
+git clone https://github.com/Rahima-Akter/taskOracle.git
 ```
 ```bash
 cd taskoracle-client
@@ -76,7 +76,7 @@ npm install
 ```bash
 npm run dev
 ```
-- The application should now be running on http://localhost:3000.
+- The application should now be running on http://localhost:5173.(or whichever port you have configured).
 
 ### 🌐 Pages and Routing
 - The frontend consists of multiple pages and uses React Router for navigation:

@@ -1,4 +1,3 @@
-
 const ActivityLog = () => {
     return (
         <div className="w-full bg-gray-200 rounded-3xl shadow-lg p-4 mb-2">
@@ -18,13 +17,14 @@ const ActivityLog = () => {
                         { task: "Task Moved", status: "Done", icon: "3" },
                     ].map((row, index) => (
                         <tr key={index} className="border-t">
-                            <td className="py-2 px-4">🔴</td>
+                            {/* Task Category */}
+                            <td className="py-2 px-4">{row.icon === "1" ? "🔴" : row.icon === "2" ? "⭕" : "⚪⚪⚪"}</td>
                             <td className="py-2 px-4 font-bold">{row.task}</td>
-                            <td className="py-2 px-4">⭕</td>
-                            <td className="py-2 px-4">⚪⚪⚪</td>
-                            <td className="py-2 px-4">🔵🔵⚪</td>
-                            <td className="py-2 px-4">🔵🔵⚪</td>
+
+                            {/* ToDo, In-Progress, Done columns */}
+                            <td className="py-2 px-4">{row.status === "Done" ? "🔵🔵⚪" : "⚪⚪⚪"}</td>
                             <td className="py-2 px-4 font-bold text-blue-600">{row.status}</td>
+                            {/* Icon column */}
                             <td className="py-2 px-4">
                                 <span className="bg-pink-400 text-white rounded-full px-2 py-1">{row.icon}</span>
                             </td>
