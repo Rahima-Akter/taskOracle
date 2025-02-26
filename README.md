@@ -30,7 +30,7 @@ Welcome to **TaskOracle**, a full-stack task management system with both **front
 - **React Query**: Data fetching and synchronization library.
 - **Axios**: For making HTTP requests to the backend API.
 - **SweetAlert2**: For beautiful alerts and notifications.
-- **React DnD**: For drag-and-drop functionality in the UI.
+- **@hello-pangea/dnd**: For drag-and-drop functionality in the UI.
 
 ### **Backend**:
 
@@ -112,7 +112,7 @@ npm start
 npm run dev
 ```
 
-- The backend should now be running on `http://localhost:9000` (or the configured port).
+- The backend should now be running on `https://task-oracle-server.vercel.app` (or the configured port).
 
 5. **Start the frontend development server**:
 

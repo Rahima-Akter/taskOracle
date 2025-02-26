@@ -1,6 +1,6 @@
 const ActivityLog = () => {
     return (
-        <div className="w-full bg-gray-200 rounded-3xl shadow-lg p-4 mb-2">
+        <div className="w-full bg-gray-200 rounded-3xl shadow-lg p-4 lg:mb-0 md:mb-6 overflow-auto hidden">
             <table className="w-full text-left border-collapse">
                 <thead>
                     <tr className="bg-gray-300 text-gray-800">

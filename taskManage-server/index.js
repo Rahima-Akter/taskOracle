@@ -8,7 +8,13 @@ const port = process.env.PORT || 9000
 const app = express();
 // middleware
 const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://sritys-taskoracle.netlify.app/'],
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://sritys-taskoracle.netlify.app',
+  ],
+  methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
   optionSuccessStatus: 200,
 }
 
@@ -32,12 +38,15 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Ensure the connection is open
-    await client.connect();
-    console.log("Connected to MongoDB");
+    // await client.connect();
+    // console.log("Connected to MongoDB");
 
     const db = client.db("taskOracleDB");
     const usersCollection = db.collection("users");
     const tasksCollection = db.collection("tasks");
+
+
+    // ** task related apis start **************************************
 
     // ** post task
     app.post('/tasks', async (req, res) => {
@@ -98,6 +107,7 @@ async function run() {
       const result = await tasksCollection.updateOne(query, updateDoc);
       res.send(result);
     });
+
     // ** change category to done
     app.patch('/done/:id', async (req, res) => {
       const id = req.params.id
@@ -110,6 +120,21 @@ async function run() {
       const result = await tasksCollection.updateOne(query, updateDoc);
       res.send(result);
     });
+
+    app.patch('/update-categories/:id', async (req, res) => {
+      const id = req.params.id;
+      const {category} = req.body;
+      const query = {_id: new ObjectId(id)};
+      const updateDoc = {
+         $set: {
+          category: category,
+         }
+      }
+      const result = await tasksCollection.updateOne(query, updateDoc);
+      res.status(200).send(result);
+    })
+
+    // ** task related apis end **********************************************
 
     app.post('/users/:email', async (req, res) => {
       const email = req.params.email;

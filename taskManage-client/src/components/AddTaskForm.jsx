@@ -24,7 +24,7 @@ const AddTaskForm = () => {
             console.log(response.data)
             if (response.data.insertedId) {
                 toast.success('task added to the list')
-                navigate('todo')
+                navigate('/dashboard')
                 setTitle("")
                 setDescription("")
                 setDueDate("")

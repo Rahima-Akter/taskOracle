@@ -1,10 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 
 const UpdateTask = () => {
     const data = useLoaderData();
+    const navigate = useNavigate()
     const { id } = useParams();
     const [title, setTitle] = useState(data.title || "");
     const [description, setDescription] = useState(data.description || "");
@@ -16,9 +17,10 @@ const UpdateTask = () => {
 
         try {
             const response = await axios.patch(`${import.meta.env.VITE_LOCAL_HOST}/task-by-id/${id}`, taskData);
-            console.log(response.data)
+            // console.log(response.data)
             if (response.data.modifiedCount) {
-                toast.success('task updated successfully')
+                toast.success('task updated successfully');
+                navigate('/dashboard')
             } else {
                 toast.error('something went wrong! please try again later')
             }

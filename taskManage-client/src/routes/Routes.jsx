@@ -24,7 +24,6 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-
         element: <Tasks />
       },
       {
@@ -36,7 +35,7 @@ export const router = createBrowserRouter([
         element: <UpdateTask />,
         loader: async ({ params }) => {
           try {
-            const response = await fetch(`http://localhost:9000/task-by-id/${params.id}`)
+            const response = await fetch(`https://task-oracle-server.vercel.app/task-by-id/${params.id}`)
             const data = await response.json()
             return data
           } catch (error) {

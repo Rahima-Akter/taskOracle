@@ -13,7 +13,10 @@ const useTasks = () => {
             return data;
         }
     });
-    return [tasks, isLoading, refetch]
+    const todoTask = tasks.filter(task => task.category === 'todo');
+    const progressTask = tasks.filter(task => task.category === 'in-progress');
+    const doneTask = tasks.filter(task => task.category === 'done');
+    return [tasks,todoTask,progressTask,doneTask, isLoading, refetch]
 };
 
 export default useTasks;

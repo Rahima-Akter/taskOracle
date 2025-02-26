@@ -72,7 +72,7 @@ npm start
 npm run dev
 ```
 6. **Access the server:**:
-- Your server should now be running on http://localhost:9000 (or whichever port you have configured).
+- Your server should now be running on https://task-oracle-server.vercel.app (or whichever port you have configured).
 
 ### 🌐 API Endpoints
 -**You can interact with the backend through the following API endpoints:**

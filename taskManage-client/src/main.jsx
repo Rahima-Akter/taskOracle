@@ -7,8 +7,6 @@ import AuthProvider from './providers/AuthProvider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProvider } from './context/themeContext/ThemeProvider'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 
 // Create a client
 const queryClient = new QueryClient()
@@ -17,9 +15,7 @@ createRoot(document.getElementById('root')).render(
     <ThemeProvider>
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
-          <DndProvider backend={HTML5Backend}>
-            <RouterProvider router={router} />
-          </DndProvider>
+          <RouterProvider router={router} />
         </QueryClientProvider>
         <Toaster position='top-right' reverseOrder={false} />
       </AuthProvider>

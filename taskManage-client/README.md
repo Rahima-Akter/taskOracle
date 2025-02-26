@@ -28,7 +28,7 @@ Welcome to **TaskOracle Client**, the frontend of the **TaskOracle Server**, bui
 - **React Query**: Data fetching and synchronization library.
 - **Axios**: For making HTTP requests to the backend API.
 - **SweetAlert2**: For beautiful alerts and notifications.
-- **React DnD**: For drag-and-drop functionality in the UI.
+- **@hello-pangea/dnd**: For drag-and-drop functionality in the UI.
 
 ---
 
