@@ -8,7 +8,7 @@ const Sidebar = () => {
     const { logOut, user } = useContext(AuthContext)
     const navigate = useNavigate()
     return (
-        <div className="lg:w-48 md:w-64 w-56 bg-gray-200 dark:bg-gray-500 dark:border-none md:rounded-3xl shadow-[inset_0px_0px_10px_rgba(0.5,0.5,0.5,0.5)]  border border-gray-200 p-4 pt-6 flex flex-col items-center md:h-[95vh] h-screen fixed">
+        <div className="lg:w-48 md:w-64 w-56 bg-gray-200 dark:bg-gray-500 dark:border-none md:rounded-3xl shadow-[inset_0px_0px_10px_rgba(0.5,0.5,0.5,0.5)]  border border-gray-200 p-4 pt-6 flex flex-col items-center md:h-[95vh] h-screen fixed z-40">
             {/* Profile Section */}
             <div className="w-20 h-20 rounded-full bg-gray-400 ring-2 dark:ring-white ring-gray-500 flex items-center justify-center mb-2">
                 {
@@ -30,15 +30,15 @@ const Sidebar = () => {
             <Tabs>
                 <TabList className="flex flex-col gap-2 mt-3">
                     <Tab
-                        className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none dark:shadow-white border border-gray-200 text-gray-800 text-center"
-                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-none hover:shadow-lg dark:hover:shadow-white border border-gray-200 text-gray-800 text-center"
+                        className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
+                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white dark:bg-gray-500 font-bold dark:text-white rounded-full shadow-none hover:shadow-lg dark:hover:shadow-white border border-gray-200 text-gray-800 text-center"
                     >
                         <Link to="create-task">+ Add Task</Link>
                     </Tab>
 
                     <Tab
                         className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
-                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
+                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white dark:bg-gray-500 font-bold dark:text-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
                     >
                         <Link to="">Tasks</Link>
                     </Tab>

@@ -37,13 +37,13 @@ const AddTaskForm = () => {
     };
 
     return (
-        <div className="w-full h-full bg-gray-200 rounded-[30px] shadow-2xl p-5 flex flex-col items-center">
-            <h2 className="text-2xl font-extrabold text-gray-600 drop-shadow-md">Add A Task</h2>
+        <div className="w-full h-full bg-gray-200 dark:bg-gray-500 rounded-[30px] shadow-2xl p-5 flex flex-col items-center md:mt-0  mt-5">
+            <h2 className="text-2xl font-extrabold text-gray-600 dark:text-white drop-shadow-md">Add A Task</h2>
             <form onSubmit={handleSubmit} className="w-full flex flex-col mt-4">
-                <div className="flex flex-row gap-5">
+                <div className="flex lg:flex-row flex-col gap-5">
                     {/* Title Input */}
-                    <div className="md:w-1/2">
-                        <label className="text-gray-900 font-medium">Title</label>
+                    <div className="lg:w-1/2">
+                        <label className="text-gray-900 dark:text-white font-medium">Title</label>
                         <input
                             type="text"
                             maxLength={50}
@@ -55,8 +55,8 @@ const AddTaskForm = () => {
                     </div>
 
                     {/* Due Date Input */}
-                    <div className="md:w-1/2">
-                        <label className="text-gray-900 font-medium mt-3">Due Date</label>
+                    <div className="lg:w-1/2">
+                        <label className="text-gray-900 dark:text-white font-medium mt-3">Due Date</label>
                         <input
                             type="date"
                             value={dueDate}
@@ -68,14 +68,15 @@ const AddTaskForm = () => {
                 </div>
 
                 {/* Description Input */}
-                <label className="text-gray-900 font-medium mt-3">Description</label>
+                <label className="text-gray-900 dark:text-white font-medium mt-3">Description</label>
                 <textarea
                     maxLength={200}
                     value={description}
                     rows={4}
                     onChange={(e) => setDescription(e.target.value)}
                     className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
-                ></textarea>
+                >
+                </textarea>
 
 
                 {/* Submit Button */}
