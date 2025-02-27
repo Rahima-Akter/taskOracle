@@ -73,10 +73,10 @@ const Home = () => {
                             className="animate-bounce w-36"
                         />
                     </div>
-                    <h1 className="text-4xl  font-bold flex items-center gap-2">
+                    <h1 className="text-4xl text-black font-bold flex items-center gap-2">
                         <span className=""><TfiWrite className="text-cyan-400 text-3xl" /></span> TASK-ORACLE: Your Task Buddy
                     </h1>
-                    <p className="py-6">
+                    <p className="py-6 text-gray-800">
                         Lets organize your daily task and keep track of your tasks ✍<br />
                         Beacuse <em>Your Task Is My Command</em> 🥰
                     </p>

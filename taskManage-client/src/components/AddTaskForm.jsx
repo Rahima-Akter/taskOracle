@@ -50,7 +50,7 @@ const AddTaskForm = () => {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
-                            className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
+                            className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal dark:text-gray-700"
                         />
                     </div>
 
@@ -62,7 +62,7 @@ const AddTaskForm = () => {
                             value={dueDate}
                             required
                             onChange={(e) => setDueDate(e.target.value)}
-                            className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
+                            className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal dark:text-gray-700"
                         />
                     </div>
                 </div>
@@ -74,7 +74,7 @@ const AddTaskForm = () => {
                     value={description}
                     rows={4}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal"
+                    className="w-full p-2 bg-gray-200 shadow-[inset_0px_0px_12px_rgba(0.2,0.2,0.2,0.5)] rounded-xl mt-1 focus:outline-none font-normal dark:text-gray-700"
                 >
                 </textarea>
 

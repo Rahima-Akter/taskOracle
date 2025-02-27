@@ -158,7 +158,6 @@ const Tasks = () => {
   };
 
 
-
   if (isLoading) return <div className='flex justify-center items-center text-cyan-400 mt-44'>
     <HashLoader size={70} color='#0fcfd5' />
   </div>
@@ -172,14 +171,14 @@ const Tasks = () => {
             <div className="bg-[#eaeadd] dark:bg-gray-500 rounded-lg shadow-lg px-4 pt-5 pb-8 gap-1 flex flex-col items-center" ref={provided.innerRef} {...provided.droppableProps}>
               <h1 className="text-center font-bold text-black dark:text-white text-xl mb-2">To-Do</h1>
               {
-                todos.length === 0 ? <p className="font-bold text-black text-lg text-center mt-20">NO TASK TO SHOW</p> :
+                todos.length === 0 ? <p className="font-bold text-black text-lg text-center mt-5">NO TASK TO SHOW</p> :
                   todos.map((todo, index) => (
                     <Draggable key={todo._id} draggableId={todo._id} index={index}>
                       {(provided) => (
-                        <div className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white shadow-lg px-2 py-1 w-full flex flex-row justify-between items-center"
+                        <div className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white shadow-lg lg:px-2 px-4 lg:py-2 py-3 w-full flex flex-row justify-between items-center"
                           ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <p className={`${ new Date().getDate() > new Date(todo.dueDate).getDate() ? "text-red-500" : ""}`}>{todo.title}</p>
-                          <div className="flex items-center gap-3">
+                          <p className={`${new Date().setHours(0, 0, 0, 0) > new Date(todo.dueDate).setHours(0, 0, 0, 0) ? "text-red-500" : ""} lg:text-sm text-lg`}>{todo.title.slice(0, 18)}</p>
+                          <div className="flex items-center space-x-2 text-lg">
                             <FaEye onClick={() => handleModal(`${todo._id}`)} />
                             <FaRegEdit onClick={() => navigate(`/dashboard/update/${todo._id}`)} />
                             <AiOutlineDelete onClick={() => handleDelete(`${todo._id}`)} />
@@ -201,14 +200,14 @@ const Tasks = () => {
             <div className="bg-[#eaeadd] dark:bg-gray-500 rounded-lg shadow-lg px-4 py-5 flex flex-col items-center gap-1" ref={provided.innerRef} {...provided.droppableProps}>
               <h1 className="text-center font-bold text-black dark:text-white text-xl mb-2">In-Progress</h1>
               {
-                progresses.length === 0 ? <p className="font-bold text-black text-lg text-center mt-20">NO TASK TO SHOW</p> :
+                progresses.length === 0 ? <p className="font-bold text-black text-lg text-center mt-5">NO TASK TO SHOW</p> :
                   progresses.map((progress, index) => (
                     <Draggable key={progress._id} draggableId={progress._id} index={index}>
                       {(provided) => (
-                        <div className="bg-white hover:bg-gray-100 dark:hover:bg-gray-950 dark:bg-gray-800 dark:text-white shadow-lg px-2 py-1 w-full flex flex-row justify-between items-center"
+                        <div className="bg-white hover:bg-gray-100 dark:hover:bg-gray-950 dark:bg-gray-800 dark:text-white shadow-lg lg:px-2 px-4 lg:py-1 py-3 w-full flex flex-row justify-between items-center"
                           ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <p className={`${ new Date().getDate() > new Date(progress.dueDate).getDate() ? "text-red-500" : ""}`}>{progress.title}</p>
-                          <div className="flex items-center gap-3">
+                          <p className={`${new Date().setHours(0, 0, 0, 0) > new Date(progress.dueDate).setHours(0, 0, 0, 0) ? "text-red-500" : ""}`}>{progress.title.slice(0, 18)}</p>
+                          <div className="flex items-center space-x-2 text-lg">
                             <FaEye onClick={() => handleModal(`${progress._id}`)} />
                             <FaRegEdit onClick={() => navigate(`/dashboard/update/${progress._id}`)} />
                             <AiOutlineDelete onClick={() => handleDelete(`${progress._id}`)} />
@@ -230,14 +229,13 @@ const Tasks = () => {
             <div className="bg-[#eaeadd] dark:bg-gray-500 rounded-lg shadow-lg px-6 py-5 flex flex-col gap-1 items-center" ref={provided.innerRef} {...provided.droppableProps}>
               <h1 className="text-center font-bold text-black dark:text-white text-xl mb-2">Done</h1>
               {
-                doneTasks.length === 0 ? <p className="font-bold text-black text-lg text-center mt-20">NO TASK TO SHOW</p> :
+                doneTasks.length === 0 ? <p className="font-bold text-black text-lg text-center mt-5">NO TASK TO SHOW</p> :
                   doneTasks.map((done, index) => (
                     <Draggable key={done._id} draggableId={done._id} index={index}>
                       {(provided) => (
-                        <div className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white shadow-lg px-2 py-1 w-full flex flex-row justify-between items-center"
-                          ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <p>{done.title}</p>
-                          <div className="flex items-center gap-3">
+                        <div className="bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white shadow-lg lg:px-2 px-4 lg:py-1 py-3 w-full flex flex-row justify-between items-center" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                          <p>{done.title.slice(0, 18)}</p>
+                          <div className="flex items-center space-x-2 gap-1 text-lg">
                             <FaEye onClick={() => handleModal(`${done._id}`)} />
                             <FaRegEdit onClick={() => navigate(`/dashboard/update/${done._id}`)} />
                             <AiOutlineDelete onClick={() => handleDelete(`${done._id}`)} />
@@ -255,14 +253,14 @@ const Tasks = () => {
 
       {/* Modal */}
       <dialog id="my_modal_5" className="modal modal-middle backdrop-blur-lg">
-        <div className="modal-box relative">
+        <div className="modal-box relative bg-white">
           <div className='text-black text-center bg-[#eaeadd] w-full h-full rounded-lg py-2 px-4 space-y-2'>
-            <h2 className='font-bold text-black text-2xl capitalize'>{detail.title}</h2>
+            <h2 className='font-bold text-black lg:text-2xl text-xl capitalize'>{detail.title}</h2>
             <p className='font-normal'>{detail.description}</p>
-            <p className='font-bold text-lg'>Due Date: <span className={`text-sm ${ new Date().getDate() > new Date(detail.dueDate).getDate() ? "text-red-500" : ""}`}>{detail.dueDate}</span></p>
+            <p className='font-bold'>Due Date: <span className={`text-sm ${new Date().setHours(0, 0, 0, 0) > new Date(detail.dueDate).setHours(0, 0, 0, 0) ? "text-red-500" : "text-black"}`}>{detail.dueDate}</span></p>
           </div>
           <form method="dialog">
-            <button className="absolute border-none text-2xl cursor-pointer top-4 right-4"><IoIosCloseCircle /></button>
+            <button className="absolute border-none text-2xl cursor-pointer top-4 right-4 text-black"><IoIosCloseCircle /></button>
           </form>
         </div>
       </dialog>

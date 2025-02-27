@@ -30,7 +30,7 @@ const UpdateTask = () => {
     };
 
     return (
-        <div className="w-full h-full bg-[#e9dddd] dark:bg-gray-500 rounded-[30px] shadow-2xl p-5 flex flex-col items-center md:mt-0 mt-5">
+        <div className="w-full h-full bg-[#eaeadd] dark:bg-gray-500 rounded-[30px] shadow-2xl p-5 flex flex-col items-center md:mt-0 mt-5">
             <h2 className="text-2xl font-extrabold text-gray-600 dark:text-white drop-shadow-md">Update Task</h2>
             <form onSubmit={handleSubmit} className="w-full flex flex-col mt-4">
                 <div className="flex flex-col lg:flex-row gap-5">
@@ -42,7 +42,7 @@ const UpdateTask = () => {
                             maxLength={50}
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold"
+                            className="w-full p-2 bg-white shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold dark:text-gray-700"
                         />
                     </div>
 
@@ -53,7 +53,7 @@ const UpdateTask = () => {
                             type="date"
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)}
-                            className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold"
+                            className="w-full p-2 bg-white shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold dark:text-gray-700"
                         />
                     </div>
                 </div>
@@ -65,14 +65,14 @@ const UpdateTask = () => {
                     value={description}
                     rows={4}
                     onChange={(e) => setDescription(e.target.value)}
-                    className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold"
+                    className="w-full p-2 shadow-[inset_0px_0px_5px_rgba(0.7,0,0,0.5)] rounded-xl mt-1 focus:outline-none font-semibold bg-white dark:text-gray-700"
                 ></textarea>
 
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full mt-5 py-3 bg-gray-200 text-gray-600 font-bold uppercase rounded-xl transition shadow-[rgba(0,0,0,0.35)_0px_3px_7px] hover:shadow-[inset_2px_2px_7px_rgba(0,0,0,0.5)]"
+                    className="w-full mt-5 py-3 bg-[#e7e7d6] dark:bg-white text-gray-600 font-bold uppercase rounded-xl transition shadow-[rgba(0,0,0,0.35)_0px_3px_7px] hover:shadow-[inset_2px_2px_7px_rgba(0,0,0,0.5)]"
                 >
                     Update Task
                 </button>

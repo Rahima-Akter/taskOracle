@@ -1,6 +1,6 @@
 import { Tab, Tabs, TabList } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 
@@ -27,24 +27,22 @@ const Sidebar = () => {
                 <button className="flex-1 text-center text-xs py-1 bg-gray-300 rounded-r-xl">Done</button>
             </div>
 
-            <Tabs>
-                <TabList className="flex flex-col gap-2 mt-3">
-                    <Tab
-                        className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
-                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white dark:bg-gray-500 font-bold dark:text-white rounded-full shadow-none hover:shadow-lg dark:hover:shadow-white border border-gray-200 text-gray-800 text-center"
-                    >
-                        <Link to="create-task">+ Add Task</Link>
-                    </Tab>
 
-                    <Tab
-                        className="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white rounded-full shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"
-                        selectedClassName="w-full py-2 px-8 my-2 -mb-[0.5px] bg-white dark:bg-gray-500 font-bold dark:text-white rounded-full shadow-none hover:shadow-lg border border-gray-200 text-gray-800 text-center"
-                    >
-                        <Link to="">Tasks</Link>
-                    </Tab>
+            <div className='flex flex-col gap-1 mt-3'>
+                <NavLink to="create-task"
+                    className={({ isActive }) => `w-full py-2 px-8 my-2 -mb-[0.5px] rounded-full ${isActive ? "bg-white dark:bg-gray-500 font-bold dark:text-white shadow-none hover:shadow-lg dark:hover:shadow-white border border-gray-200 text-gray-800 text-center" : "bg-white shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"}`}
+                >
+                    + Add Task
+                </NavLink>
 
-                </TabList>
-            </Tabs>
+                <NavLink to=""
+                    end
+                    className={({ isActive }) => `w-full py-2 px-8 my-2 -mb-[0.5px] rounded-full ${isActive ? "bg-white dark:bg-gray-500 font-bold dark:text-white shadow-none hover:shadow-lg dark:hover:shadow-white border border-gray-200 text-gray-800 text-center" : "bg-white shadow-lg hover:shadow-none border border-gray-200 text-gray-800 text-center"}`}
+                >
+                    Tasks
+                </NavLink>
+            </div>
+
 
             <div className='mt-auto'>
                 <button onClick={() => { logOut(); navigate("/") }} className="w-full py-2 px-12 bg-white rounded-full shadow-lg border border-gray-200 text-black text-sm">Log Out</button>
