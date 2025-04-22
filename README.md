@@ -157,3 +157,5 @@ For any questions or suggestions, please contact me directly!
 ---
 
 ## 🚀 **Happy Task Managing!**
+
+# [✨ Live site link](https://sritys-taskoracle.netlify.app/)
